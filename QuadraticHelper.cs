@@ -19,6 +19,9 @@
 
             double d = b * b - 4 * a * c;
 
+            if (d.EqualsExact(0))
+                throw new ArgumentException("Diskriminant is 0");
+
             var x1 = (-b + Math.Sqrt(d)) / 2 * a;
             var x2 = (-b - Math.Sqrt(d)) / 2 * a;
 
