@@ -4,7 +4,9 @@
     {
         public static double[] SolveIncompleteQuadraticEquation(double b)
         {
-            if (b < 0)
+            ValidateDoubleParameter(b, "Argument b is incorrect");
+
+            if (b.CompareTo(0) < 0)
                 return new double[0];
 
             var res = Math.Sqrt(b);
@@ -30,14 +32,15 @@
             if (a.EqualsExact(0))
                 throw new ArgumentException("Argument a can not be 0");
 
-            if (!double.IsFinite(a) || double.IsNaN(a))
-                throw new ArgumentException("Argument a is incorrect");
+            ValidateDoubleParameter(a, "Argument a is incorrect");
+            ValidateDoubleParameter(b, "Argument b is incorrect");
+            ValidateDoubleParameter(c, "Argument c is incorrect");
+        }
 
-            if (!double.IsFinite(b) || double.IsNaN(b))
-                throw new ArgumentException("Argument b is incorrect");
-
-            if (!double.IsFinite(c) || double.IsNaN(c))
-                throw new ArgumentException("Argument c is incorrect");
+        private static void ValidateDoubleParameter(double val, string errorMessage)
+        {
+            if (!double.IsFinite(val) || double.IsNaN(val))
+                throw new ArgumentException(errorMessage);
         }
     }
 }
