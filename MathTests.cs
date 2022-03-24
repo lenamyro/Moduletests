@@ -49,8 +49,8 @@ public class MathTests
         var result = QuadraticHelper.Solve(a, b, c);
 
         // Assert
-        result.Length.ShouldBe(2);
-        result[1].ShouldBe(result[0]);
+        result.Length.ShouldBe(1);
+        result[0].ShouldBe(result[0]);
     }
 
     [Fact]
@@ -73,5 +73,25 @@ public class MathTests
             e.Message.ShouldBe("Argument a can not be 0");
         }
 
+    }
+
+    [Theory]
+    [Trait("Category", "Unit")]
+    [InlineData(double.NaN, 2, 3, "Argument a is incorrect")]
+    [InlineData(4, double.NaN, 3, "Argument b is incorrect")]
+    [InlineData(5, 2, double.NaN, "Argument c is incorrect")]
+    public void SolveQaudratic_With_A_NaN_Argument_Should_ThrowException(double a, double b, double c, string messageError)
+    {
+
+        // Act
+        try
+        {
+            var result = QuadraticHelper.Solve(a, b, c);
+        }
+        catch (Exception e)
+        {
+            // Assert
+            e.Message.ShouldBe(messageError);
+        }
     }
 }
