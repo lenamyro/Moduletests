@@ -49,8 +49,8 @@ public class MathTests
         var result = QuadraticHelper.Solve(a, b, c);
 
         // Assert
-        result.Length.ShouldBe(2);
-        result[1].ShouldBe(result[0]);
+        result.Length.ShouldBe(1);
+        result[0].ShouldBe(result[0]);
     }
 
     [Fact]
@@ -93,6 +93,5 @@ public class MathTests
             // Assert
             e.Message.ShouldBe(messageError);
         }
-
     }
 }

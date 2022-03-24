@@ -20,11 +20,18 @@
                 
             double d = b * b - 4 * a * c;
 
-            var x1 = (-b + Math.Sqrt(d)) / 2 * a;
-            var x2 = (-b - Math.Sqrt(d)) / 2 * a;
-
-            return new double[] { x1, x2 };
-
+            if (d.CompareTo(0) < 0)
+                return new double[0];
+            else if (d.CompareTo(0) == 0)
+            {
+                var x1 = (-b) / 2 * a;
+                return new double[] { x1 };
+            } else
+            {
+                var x1 = (-b + Math.Sqrt(d)) / 2 * a;
+                var x2 = (-b - Math.Sqrt(d)) / 2 * a;
+                return new double[] { x1, x2 };
+            }
         }
 
         private static void ParametersValidation(double a, double b, double c)
